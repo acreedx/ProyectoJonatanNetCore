@@ -16,6 +16,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = G:\Proyecto-Jonathan\ModuloAdministracion\ModuloAdministracion
 build_property._RazorSourceGeneratorDebug = 
 
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Categorias/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Categorias/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Categorias/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Categorias/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Categorias/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +62,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Productos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Roles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Roles/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Roles/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Roles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Roles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Shared/Error.cshtml]
@@ -74,6 +114,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Site/Productos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2l0ZVxQcm9kdWN0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Usuarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Usuarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Usuarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Usuarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/Usuarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/Proyecto-Jonathan/ModuloAdministracion/ModuloAdministracion/Views/_ViewImports.cshtml]
