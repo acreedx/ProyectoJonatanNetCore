@@ -1,0 +1,123 @@
+CREATE DATABASE DBFARMACIA;
+USE DBFARMACIA;
+GO;
+
+CREATE TABLE categorias (
+    id        INTEGER NOT NULL,
+    categoria VARCHAR2(50 CHAR) NOT NULL
+);
+
+ALTER TABLE categorias ADD CONSTRAINT categorias_pk PRIMARY KEY ( id );
+
+CREATE TABLE compras (
+    id          INTEGER NOT NULL,
+    fechacompra DATE NOT NULL,
+    cantidad    INTEGER NOT NULL,
+    total       NUMBER(10, 2) NOT NULL,
+    usuarios_id INTEGER NOT NULL
+);
+
+ALTER TABLE compras ADD CONSTRAINT compras_pk PRIMARY KEY ( id );
+
+CREATE TABLE detallecompra (
+    id           INTEGER NOT NULL,
+    productos_id INTEGER NOT NULL,
+    compras_id   INTEGER NOT NULL
+);
+
+ALTER TABLE detallecompra ADD CONSTRAINT detallecompra_pk PRIMARY KEY ( id );
+
+CREATE TABLE detalleventa (
+    id           INTEGER NOT NULL,
+    productos_id INTEGER NOT NULL,
+    ventas_id    INTEGER NOT NULL
+);
+
+ALTER TABLE detalleventa ADD CONSTRAINT detalleventa_pk PRIMARY KEY ( id );
+
+CREATE TABLE productos (
+    id             INTEGER NOT NULL,
+    nombreproducto VARCHAR2(50 CHAR) NOT NULL,
+    precio         NUMBER(10, 2) NOT NULL,
+    cantidad       INTEGER NOT NULL,
+    estado         SMALLINT NOT NULL,
+    categorias_id  INTEGER NOT NULL,
+    proveedores_id INTEGER NOT NULL
+);
+
+ALTER TABLE productos ADD CONSTRAINT productos_pk PRIMARY KEY ( id );
+
+CREATE TABLE proveedores (
+    id        INTEGER NOT NULL,
+    proveedor VARCHAR2(50 CHAR) NOT NULL,
+    telefono  VARCHAR2(50 CHAR) NOT NULL,
+    estado    SMALLINT NOT NULL
+);
+
+ALTER TABLE proveedores ADD CONSTRAINT proveedores_pk PRIMARY KEY ( id );
+
+CREATE TABLE roles (
+    id  INTEGER NOT NULL,
+    rol VARCHAR2(50 CHAR) NOT NULL
+);
+
+ALTER TABLE roles ADD CONSTRAINT roles_pk PRIMARY KEY ( id );
+
+CREATE TABLE usuarios (
+    id       INTEGER NOT NULL,
+    correo   VARCHAR2(50 CHAR) NOT NULL,
+    password VARCHAR2(50 CHAR) NOT NULL,
+    nombre   VARCHAR2(50 CHAR) NOT NULL,
+    apellido VARCHAR2(50 CHAR) NOT NULL,
+    roles_id INTEGER NOT NULL,
+    estado   SMALLINT NOT NULL
+);
+
+ALTER TABLE usuarios ADD CONSTRAINT usuarios_pk PRIMARY KEY ( id );
+
+CREATE TABLE ventas (
+    id             INTEGER NOT NULL,
+    fechaventa     DATE NOT NULL,
+    cantidad       INTEGER NOT NULL,
+    preciounitario NUMBER(10, 2) NOT NULL,
+    total          NUMBER(10, 2) NOT NULL,
+    usuarios_id    INTEGER NOT NULL
+);
+
+ALTER TABLE ventas ADD CONSTRAINT ventas_pk PRIMARY KEY ( id );
+
+ALTER TABLE compras
+    ADD CONSTRAINT compras_usuarios_fk FOREIGN KEY ( usuarios_id )
+        REFERENCES usuarios ( id );
+
+ALTER TABLE detallecompra
+    ADD CONSTRAINT detallecompra_compras_fk FOREIGN KEY ( compras_id )
+        REFERENCES compras ( id );
+
+ALTER TABLE detallecompra
+    ADD CONSTRAINT detallecompra_productos_fk FOREIGN KEY ( productos_id )
+        REFERENCES productos ( id );
+
+ALTER TABLE detalleventa
+    ADD CONSTRAINT detalleventa_productos_fk FOREIGN KEY ( productos_id )
+        REFERENCES productos ( id );
+
+ALTER TABLE detalleventa
+    ADD CONSTRAINT detalleventa_ventas_fk FOREIGN KEY ( ventas_id )
+        REFERENCES ventas ( id );
+
+ALTER TABLE productos
+    ADD CONSTRAINT productos_categorias_fk FOREIGN KEY ( categorias_id )
+        REFERENCES categorias ( id );
+
+ALTER TABLE productos
+    ADD CONSTRAINT productos_proveedores_fk FOREIGN KEY ( proveedores_id )
+        REFERENCES proveedores ( id );
+
+ALTER TABLE usuarios
+    ADD CONSTRAINT usuarios_roles_fk FOREIGN KEY ( roles_id )
+        REFERENCES roles ( id );
+
+ALTER TABLE ventas
+    ADD CONSTRAINT ventas_usuarios_fk FOREIGN KEY ( usuarios_id )
+        REFERENCES usuarios ( id );
