@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,8 @@ namespace ModuloAdministracion.Controllers
             _context = context;
         }
 
-        // GET: Categorias
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Categorias != null ? 
@@ -27,7 +29,8 @@ namespace ModuloAdministracion.Controllers
                           Problem("Entity set 'DBFARMACIAContext.Categorias'  is null.");
         }
 
-        // GET: Categorias/Details/5
+
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Categorias == null)
@@ -45,21 +48,24 @@ namespace ModuloAdministracion.Controllers
             return View(categoria);
         }
 
-        // GET: Categorias/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Categorias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Categoria1")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
+                if (_context.Categorias.Any(e => e.Categoria1.Equals(categoria.Categoria1)))
+                {
+                    ViewBag.ErrorCategoria = "Ya existe una categoria con ese nombre";
+                    return View(categoria);
+                }
                 _context.Add(categoria);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -67,7 +73,7 @@ namespace ModuloAdministracion.Controllers
             return View(categoria);
         }
 
-        // GET: Categorias/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Categorias == null)
@@ -83,11 +89,9 @@ namespace ModuloAdministracion.Controllers
             return View(categoria);
         }
 
-        // POST: Categorias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Categoria1")] Categoria categoria)
         {
             if (id != categoria.Id)
@@ -99,6 +103,11 @@ namespace ModuloAdministracion.Controllers
             {
                 try
                 {
+                    if (_context.Categorias.Any(e => e.Categoria1.Equals(categoria.Categoria1) && e.Id != categoria.Id))
+                    {
+                        ViewBag.ErrorCategoria = "Ya existe una categoria con ese nombre";
+                        return View(categoria);
+                    }
                     _context.Update(categoria);
                     await _context.SaveChangesAsync();
                 }
@@ -118,7 +127,7 @@ namespace ModuloAdministracion.Controllers
             return View(categoria);
         }
 
-        // GET: Categorias/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categorias == null)
@@ -136,9 +145,9 @@ namespace ModuloAdministracion.Controllers
             return View(categoria);
         }
 
-        // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Categorias == null)

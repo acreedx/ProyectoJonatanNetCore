@@ -1,19 +1,19 @@
 ﻿@model IEnumerable<ModuloAdministracion.Models.Categoria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Indice";
 }
 
-<h1>Index</h1>
+<h1>Indice</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria1)
+                Categoria
             </th>
             <th></th>
         </tr>
@@ -25,9 +25,8 @@
                 @Html.DisplayFor(modelItem => item.Categoria1)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a>
             </td>
         </tr>
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,14 +20,14 @@ namespace ModuloAdministracion.Controllers
             _context = context;
         }
 
-        // GET: Usuarios
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var dBFARMACIAContext = _context.Usuarios.Include(u => u.Roles);
             return View(await dBFARMACIAContext.ToListAsync());
         }
 
-        // GET: Usuarios/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Usuarios == null)
@@ -45,31 +46,35 @@ namespace ModuloAdministracion.Controllers
             return View(usuario);
         }
 
-        // GET: Usuarios/Create
+        [Authorize]
         public IActionResult Create()
         {
-            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Id");
+            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Rol");
             return View();
         }
 
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Correo,Password,Nombre,Apellido,RolesId,Estado")] Usuario usuario)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                if (_context.Usuarios.Any(e => e.Correo.Equals(usuario.Correo)))
+                {
+                    ViewBag.ErrorCorreo = "Ya existe un usuario registrado con ese correo electronico";
+                    ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Rol", usuario.RolesId);
+                    return View(usuario);
+                }
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolesId);
+            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Rol", usuario.RolesId);
             return View(usuario);
         }
 
-        // GET: Usuarios/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Usuarios == null)
@@ -82,15 +87,13 @@ namespace ModuloAdministracion.Controllers
             {
                 return NotFound();
             }
-            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolesId);
+            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Rol", usuario.RolesId);
             return View(usuario);
         }
 
-        // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Correo,Password,Nombre,Apellido,RolesId,Estado")] Usuario usuario)
         {
             if (id != usuario.Id)
@@ -98,10 +101,16 @@ namespace ModuloAdministracion.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
+                    if (_context.Usuarios.Any(e => e.Correo.Equals(usuario.Correo) && e.Id != usuario.Id))
+                    {
+                        ViewBag.ErrorCorreo = "Ya existe un usuario registrado con ese correo electronico";
+                        ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Rol", usuario.RolesId);
+                        return View(usuario);
+                    }
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
                 }
@@ -118,11 +127,11 @@ namespace ModuloAdministracion.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Id", usuario.RolesId);
+            ViewData["RolesId"] = new SelectList(_context.Roles, "Id", "Rol", usuario.RolesId);
             return View(usuario);
         }
 
-        // GET: Usuarios/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Usuarios == null)
@@ -140,10 +149,27 @@ namespace ModuloAdministracion.Controllers
 
             return View(usuario);
         }
+        [Authorize]
+        public async Task<IActionResult> Enable(int? id)
+        {
+            if (id == null || _context.Usuarios == null)
+            {
+                return NotFound();
+            }
 
-        // POST: Usuarios/Delete/5
+            var usuario = await _context.Usuarios
+                .Include(u => u.Roles)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Usuarios == null)
@@ -153,7 +179,16 @@ namespace ModuloAdministracion.Controllers
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario != null)
             {
-                _context.Usuarios.Remove(usuario);
+                if (usuario.Estado == 0)
+                {
+                    usuario.Estado = 1;
+                }
+                else
+                {
+                    usuario.Estado = 0;
+                }
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();
             }
             
             await _context.SaveChangesAsync();

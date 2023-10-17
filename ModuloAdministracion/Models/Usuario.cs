@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ModuloAdministracion.Models
 {
@@ -12,9 +13,13 @@ namespace ModuloAdministracion.Models
         }
 
         public int Id { get; set; }
+        [Required(ErrorMessage = "Ingrese el correo del usuario")]
         public string Correo { get; set; } = null!;
+        [Required(ErrorMessage = "Ingrese el password del usuario")]
         public string Password { get; set; } = null!;
+        [Required(ErrorMessage = "Ingrese el nombre del usuario")]
         public string Nombre { get; set; } = null!;
+        [Required(ErrorMessage = "Ingrese el apellido del usuario")]
         public string Apellido { get; set; } = null!;
         public int RolesId { get; set; }
         public short Estado { get; set; }

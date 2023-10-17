@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_SiteLayout.cshtml";
 }
 <div class="site-navbar py-2">
-    <div class="search-wrap">
+    <!--<div class="search-wrap">
         <div class="container">
             <a href="#" class="search-close js-search-close">
                 <span class="icon-close2"></span>
@@ -14,7 +14,7 @@
                        placeholder="Presionar un boton y presiona enter..." />
             </form>
         </div>
-    </div>
+    </div>-->
 
     <div class="container">
         <div class="d-flex align-items-center justify-content-between">
@@ -34,11 +34,12 @@
                     </ul>
                 </nav>
             </div>
+            <!--
             <div class="icons">
                 <a href="#" class="icons-btn d-inline-block js-search-open">
                     <span class="icon-search"></span>
                 </a>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
@@ -47,8 +48,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-0">
-                <a href="index.html">Inicio</a> <span class="mx-2 mb-0">/</span>
-                <a href="shop.html">Productos</a> <span class="mx-2 mb-0">/</span>
+                <a asp-controller="Site" asp-action="Index">Inicio</a> <span class="mx-2 mb-0">/</span>
+                <a asp-controller="Site" asp-action="Productos">Productos</a> <span class="mx-2 mb-0">/</span>
                 <strong class="text-black">Tabletas de ibuprofeno, 200mg</strong>
             </div>
         </div>
@@ -60,7 +61,7 @@
         <div class="row">
             <div class="col-md-5 mr-auto">
                 <div class="border text-center">
-                    <img src="images/product_07_large.png"
+                    <img src="~/images/product_07_large.png"
                          alt="Image"
                          class="img-fluid p-5" />
                 </div>

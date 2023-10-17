@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,8 @@ namespace ModuloAdministracion.Controllers
             _context = context;
         }
 
-        // GET: Roles
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Roles != null ? 
@@ -27,7 +29,7 @@ namespace ModuloAdministracion.Controllers
                           Problem("Entity set 'DBFARMACIAContext.Roles'  is null.");
         }
 
-        // GET: Roles/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Roles == null)
@@ -45,17 +47,15 @@ namespace ModuloAdministracion.Controllers
             return View(role);
         }
 
-        // GET: Roles/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Roles/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Rol")] Role role)
         {
             if (ModelState.IsValid)
@@ -67,7 +67,7 @@ namespace ModuloAdministracion.Controllers
             return View(role);
         }
 
-        // GET: Roles/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Roles == null)
@@ -83,11 +83,9 @@ namespace ModuloAdministracion.Controllers
             return View(role);
         }
 
-        // POST: Roles/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Rol")] Role role)
         {
             if (id != role.Id)
@@ -118,7 +116,7 @@ namespace ModuloAdministracion.Controllers
             return View(role);
         }
 
-        // GET: Roles/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Roles == null)
@@ -136,7 +134,7 @@ namespace ModuloAdministracion.Controllers
             return View(role);
         }
 
-        // POST: Roles/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

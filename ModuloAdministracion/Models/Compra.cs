@@ -7,16 +7,16 @@ namespace ModuloAdministracion.Models
     {
         public Compra()
         {
-            DetalleCompras = new HashSet<DetalleCompra>();
+            Detallecompras = new HashSet<Detallecompra>();
         }
 
         public int Id { get; set; }
-        public DateTime FechaCompra { get; set; }
+        public DateTime Fechacompra { get; set; }
         public int Cantidad { get; set; }
         public decimal Total { get; set; }
         public int UsuariosId { get; set; }
 
         public virtual Usuario Usuarios { get; set; } = null!;
-        public virtual ICollection<DetalleCompra> DetalleCompras { get; set; }
+        public virtual ICollection<Detallecompra> Detallecompras { get; set; }
     }
 }

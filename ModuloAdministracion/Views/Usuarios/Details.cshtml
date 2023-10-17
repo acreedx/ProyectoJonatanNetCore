@@ -1,10 +1,10 @@
 ﻿@model ModuloAdministracion.Models.Usuario
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
     <h4>Usuario</h4>
@@ -15,12 +15,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Correo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nombre)
@@ -38,17 +32,24 @@
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
+            @if (Model.Estado == 1)
+            {
+                <span>Activo</span>
+            }
+            else
+            {
+                <span>Inactivo</span>
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Roles)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Roles.Id)
+            @Html.DisplayFor(model => model.Roles.Rol)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
 </div>

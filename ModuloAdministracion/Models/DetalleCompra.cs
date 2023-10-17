@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ModuloAdministracion.Models
 {
-    public partial class DetalleCompra
+    public partial class Detallecompra
     {
         public int Id { get; set; }
         public int ProductosId { get; set; }

@@ -1,10 +1,10 @@
 ﻿@model ModuloAdministracion.Models.Usuario
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -16,11 +16,11 @@
             <div class="form-group">
                 <label asp-for="Correo" class="control-label"></label>
                 <input asp-for="Correo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
+                <span asp-validation-for="Correo" class="text-danger">@ViewBag.ErrorCorreo</span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="form-control"/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,24 +34,23 @@
                 <span asp-validation-for="Apellido" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RolesId" class="control-label"></label>
+                <label asp-for="RolesId" class="control-label">Rol</label>
                 <select asp-for="RolesId" class="form-control" asp-items="ViewBag.RolesId"></select>
                 <span asp-validation-for="RolesId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
+                <input asp-for="Estado" class="form-control" hidden/>
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {

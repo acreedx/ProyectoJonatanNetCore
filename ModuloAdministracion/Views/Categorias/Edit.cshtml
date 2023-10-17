@@ -1,10 +1,10 @@
 ﻿@model ModuloAdministracion.Models.Categoria
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Categoria</h4>
 <hr />
@@ -14,19 +14,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Categoria1" class="control-label"></label>
+                <label asp-for="Categoria1" class="control-label">Categoria</label>
                 <input asp-for="Categoria1" class="form-control" />
-                <span asp-validation-for="Categoria1" class="text-danger"></span>
+                <span asp-validation-for="Categoria1" class="text-danger">@ViewBag.ErrorCategoria</span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {

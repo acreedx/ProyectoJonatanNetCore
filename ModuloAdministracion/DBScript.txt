@@ -3,24 +3,24 @@ USE DBFARMACIA;
 GO;
 
 CREATE TABLE categorias (
-    id        INTEGER NOT NULL,
-    categoria VARCHAR2(50 CHAR) NOT NULL
+    id        INTEGER NOT NULL IDENTITY,
+    categoria VARCHAR(50) NOT NULL
 );
 
 ALTER TABLE categorias ADD CONSTRAINT categorias_pk PRIMARY KEY ( id );
 
 CREATE TABLE compras (
-    id          INTEGER NOT NULL,
+    id          INTEGER NOT NULL IDENTITY,
     fechacompra DATE NOT NULL,
     cantidad    INTEGER NOT NULL,
-    total       NUMBER(10, 2) NOT NULL,
+    total       NUMERIC(10, 2) NOT NULL,
     usuarios_id INTEGER NOT NULL
 );
 
 ALTER TABLE compras ADD CONSTRAINT compras_pk PRIMARY KEY ( id );
 
 CREATE TABLE detallecompra (
-    id           INTEGER NOT NULL,
+    id           INTEGER NOT NULL IDENTITY,
     productos_id INTEGER NOT NULL,
     compras_id   INTEGER NOT NULL
 );
@@ -28,7 +28,7 @@ CREATE TABLE detallecompra (
 ALTER TABLE detallecompra ADD CONSTRAINT detallecompra_pk PRIMARY KEY ( id );
 
 CREATE TABLE detalleventa (
-    id           INTEGER NOT NULL,
+    id           INTEGER NOT NULL IDENTITY,
     productos_id INTEGER NOT NULL,
     ventas_id    INTEGER NOT NULL
 );
@@ -36,10 +36,11 @@ CREATE TABLE detalleventa (
 ALTER TABLE detalleventa ADD CONSTRAINT detalleventa_pk PRIMARY KEY ( id );
 
 CREATE TABLE productos (
-    id             INTEGER NOT NULL,
-    nombreproducto VARCHAR2(50 CHAR) NOT NULL,
-    precio         NUMBER(10, 2) NOT NULL,
+    id             INTEGER NOT NULL IDENTITY,
+    nombreproducto VARCHAR(50) NOT NULL,
+    precio         NUMERIC (10,2) NOT NULL,
     cantidad       INTEGER NOT NULL,
+    rutaimagen     VARCHAR(200) NULL,
     estado         SMALLINT NOT NULL,
     categorias_id  INTEGER NOT NULL,
     proveedores_id INTEGER NOT NULL
@@ -48,27 +49,27 @@ CREATE TABLE productos (
 ALTER TABLE productos ADD CONSTRAINT productos_pk PRIMARY KEY ( id );
 
 CREATE TABLE proveedores (
-    id        INTEGER NOT NULL,
-    proveedor VARCHAR2(50 CHAR) NOT NULL,
-    telefono  VARCHAR2(50 CHAR) NOT NULL,
+    id        INTEGER NOT NULL IDENTITY,
+    proveedor VARCHAR (50) NOT NULL,
+    telefono  VARCHAR (50) NOT NULL,
     estado    SMALLINT NOT NULL
 );
 
 ALTER TABLE proveedores ADD CONSTRAINT proveedores_pk PRIMARY KEY ( id );
 
 CREATE TABLE roles (
-    id  INTEGER NOT NULL,
-    rol VARCHAR2(50 CHAR) NOT NULL
+    id  INTEGER NOT NULL IDENTITY,
+    rol VARCHAR(50) NOT NULL
 );
 
 ALTER TABLE roles ADD CONSTRAINT roles_pk PRIMARY KEY ( id );
 
 CREATE TABLE usuarios (
-    id       INTEGER NOT NULL,
-    correo   VARCHAR2(50 CHAR) NOT NULL,
-    password VARCHAR2(50 CHAR) NOT NULL,
-    nombre   VARCHAR2(50 CHAR) NOT NULL,
-    apellido VARCHAR2(50 CHAR) NOT NULL,
+    id       INTEGER NOT NULL IDENTITY,
+    correo   VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    nombre   VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
     roles_id INTEGER NOT NULL,
     estado   SMALLINT NOT NULL
 );
@@ -76,11 +77,11 @@ CREATE TABLE usuarios (
 ALTER TABLE usuarios ADD CONSTRAINT usuarios_pk PRIMARY KEY ( id );
 
 CREATE TABLE ventas (
-    id             INTEGER NOT NULL,
+    id             INTEGER NOT NULL IDENTITY,
     fechaventa     DATE NOT NULL,
     cantidad       INTEGER NOT NULL,
-    preciounitario NUMBER(10, 2) NOT NULL,
-    total          NUMBER(10, 2) NOT NULL,
+    preciounitario NUMERIC(10, 2) NOT NULL,
+    total          NUMERIC(10, 2) NOT NULL,
     usuarios_id    INTEGER NOT NULL
 );
 
@@ -121,3 +122,7 @@ ALTER TABLE usuarios
 ALTER TABLE ventas
     ADD CONSTRAINT ventas_usuarios_fk FOREIGN KEY ( usuarios_id )
         REFERENCES usuarios ( id );
+
+        
+  INSERT INTO roles VALUES('Administrador');
+  INSERT INTO usuarios VALUES('jonathan@gmail.com','123','jonathan','hinojosa',1,1);

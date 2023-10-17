@@ -1,0 +1,67 @@
+﻿@model ModuloAdministracion.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre producto
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombreproducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+        <dt class="col-sm-2">
+            Imagen
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Html.DisplayFor(model => model.RutaImagen)" alt="icono producto" style="width: 100px; ">
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd class = "col-sm-10">
+        @if (Model.Estado == 1)
+        {
+            <span>Activo</span>
+        }
+        else
+        {
+            <span>Inactivo</span>
+        }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Categorias)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Categorias.Categoria1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Proveedores)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Proveedores.Proveedor)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
+</div>

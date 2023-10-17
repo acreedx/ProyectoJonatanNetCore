@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ModuloAdministracion.Models.Producto>
+
+@{
+    ViewData["Title"] = "Indice";
+}
+
+<h1>Indice</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo producto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre producto
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                Imagen
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedores)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombreproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td style="text-align: center;">
+                <img src="@Html.DisplayFor(modelItem => item.RutaImagen)" alt="icono producto" style="width: 50px; ">
+            </td>
+            <td>
+                @if (item.Estado == 1)
+                {
+                    <p>Activo</p>
+                }
+                else
+                {
+
+                    <p>Inactivo</p>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorias.Categoria1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedores.Proveedor)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                    @if (item.Estado == 1)
+                    {
+
+                        <a asp-action="Delete" asp-route-id="@item.Id">Deshabilitar</a>
+                    }
+                    else
+                    {
+
+                        <a asp-action="Enable" asp-route-id="@item.Id">Habilitar</a>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
